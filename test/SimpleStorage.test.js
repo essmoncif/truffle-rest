@@ -17,4 +17,13 @@ contract("SimpleStorage", (accounts) => {
             assert.equal(receipt, 1997);
         })
     })
+
+    it("set invalid value", () => {
+        return SimpleStorage.deployed().then((instance) => {
+            storageInstance = instance;
+            return storageInstance.set(-812);
+        }).then(assert.fail).catch((error) => {
+            assert.equal(error.code, 'INVALID_ARGUMENT');
+        })
+    })
 })
