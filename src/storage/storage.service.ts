@@ -31,4 +31,14 @@ export class StorageService {
             throw new HttpException('Invalid value', HttpStatus.BAD_REQUEST)
         }
     }
+
+    async getData(account: string){
+        try{
+            const instance = await SimpleStorage.deployed();
+            const value =  parseInt(await instance.storedData({from: account}));
+            return {value};
+        }catch(error){
+            throw new HttpException('Invalid account', HttpStatus.BAD_REQUEST);
+        }
+    }
 }
