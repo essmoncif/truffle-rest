@@ -10,6 +10,12 @@ export class StorageController {
     @Post()
     async setValue(@Body() setDataDTO: SetDataDTO, @Req() request){
         const {account} = request.headers;
-        return this.storageService.setData(setDataDTO, account);
+        return (this.storageService.setData(setDataDTO, account));
+    }
+
+    @Get()
+    async getValue(@Req() request){
+        const {account} = request.headers;
+        return (this.storageService.getData(account));
     }
 }
