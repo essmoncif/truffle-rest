@@ -34,7 +34,6 @@ export class StorageController {
     @ApiResponse({ status: 400, description: 'invalid value !'})
     @UseGuards(new AuthGuard())
     async setValue(@Body() setDataDTO: SetDataDTO, @Account("account") account){
-        console.log(account)
         return (this.storageService.setData(setDataDTO, account));
     }
 
@@ -49,7 +48,6 @@ export class StorageController {
     @ApiResponse({ status: 400, description: 'invalid address account !'})
     @UseGuards(new AuthGuard())
     async getValue(@Account("account") account){
-        console.log(account)
         return (this.storageService.getData(account));
     }
 }
